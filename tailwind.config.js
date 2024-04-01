@@ -9,11 +9,11 @@ const config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    screens: {
-      'sm': '576px',
-      'md': '960px',
-      'lg': '1440px',
-    },
+    // screens: {
+    //   'sm': '576px',
+    //   'md': '960px',
+    //   'lg': '1440px',
+    // },
 
     extend: {
       colors: {

@@ -50,13 +50,14 @@ const AuthLayout = ({ children }) => {
                                     router.push("/products")
                                 }}>
                                     <input
+                                        placeholder='Search'
                                         onChange={(e) => {
                                             const { value } = e.target
                                             setSearch(value)
                                         }}
                                         className='w-[100%] bg-transparent focus:outline-none' />
                                 </form>
-                                : <input onChange={(e) => { searching(e.target.value) }} className='w-[100%] bg-transparent focus:outline-none' />}
+                                : <input placeholder='Search' onChange={(e) => { searching(e.target.value) }} className='w-[100%] bg-transparent focus:outline-none' />}
                         </div>
                         <Link href="/cart" className='flex gap-[12px] items-center'>
                             <div className='relative'><CartIcon />

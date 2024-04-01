@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { api_url } from '@/redux/apis/fetchHomePage'
 import AuthLayout from '@/Components/Layouts/AuthLayout'
-import Banner from "../../src/assets/banner.png"
 import Brand1 from "../../src/assets/brand1.png"
 import Brand2 from "../../src/assets/brand2.png"
 import Brand3 from "../../src/assets/brand3.png"
@@ -12,9 +11,11 @@ import { AppButton, AppText, Heading, ProductCard } from '@/Components/ui-elemen
 import Link from 'next/link'
 import Meta from '@/Components/Meta'
 import { useMediaQuery } from 'react-responsive'
+import { useRouter } from 'next/router'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home(props) {
+  const router = useRouter()
   const { products } = props.data
   // console.log(products)
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
@@ -38,22 +39,21 @@ export default function Home(props) {
                 Browse through our diverse range of meticulously crafted garments, designed to bring out your
                 individuality and cater to your sense of style.
               </AppText>
-              <Link href="/products">
-                <AppButton variant='filled' className='z-10 rounded-full px-16 py-4 lg:max-w-60'>
-                  Shop Now
-                </AppButton>
-              </Link>
-              <div className='grid z-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                <div className='border-r-2 px-[32px] m-auto'>
-                  <div className='text-[40px] font-bold'>200+</div>
+
+              <AppButton onClick={() => router.push("/products")} variant='filled' className='z-10 max-md:m-auto bg-black rounded-full px-16 py-4 w-60 max-lg:max-w-60'>
+                Shop Now
+              </AppButton>
+              <div className='grid z-10 grid-cols-3 m-auto max-md:grid-cols-1 max-lg:grid-cols-3 gap-4'>
+                <div className='px-[32px] m-auto w-[100%] text-left'>
+                  <div className='max-md:text-[22px] lg:text-[40px] font-bold'>200+</div>
                   <div className='text-[16px] text-[#00000099] whitespace-nowrap'>International Brands</div>
                 </div>
-                <div className='border-r-2 px-[32px] m-auto'>
-                  <div className='text-[40px] font-bold'>2,000+</div>
+                <div className='px-[32px] m-auto w-[100%] text-left'>
+                  <div className='max-md:text-[22px] lg:text-[40px] font-bold'>2,000+</div>
                   <div className='text-[16px] text-[#00000099] whitespace-nowrap'>High-Quality Products</div>
                 </div>
-                <div className='border-r-2 px-[32px] m-auto'>
-                  <div className='text-[40px] font-bold'>30,000+</div>
+                <div className='px-[32px] m-auto w-[100%] text-left'>
+                  <div className='max-md:text-[22px] lg:text-[40px] font-bold'>30,000+</div>
                   <div className='text-[16px] text-[#00000099] whitespace-nowrap'>Happy Customers</div>
                 </div>
               </div>
@@ -68,7 +68,7 @@ export default function Home(props) {
           <Image className='m-auto w-[133px] h-[33px]' src={Brand5} />
         </div>
         <div className='pt-[72px] w-[100%] '>
-          <div className='px-[100px] font-bold pb-[55px] text-[48px] w-[100%] text-center align-center font-integral'>New Arrivals</div>
+          <div className='px-[100px] font-bold md:pb:[30px] lg:pb-[55px] md:text-[38px] lg:text-[48px] w-[100%] text-center align-center font-integral'>New Arrivals</div>
           <div className='grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-4 gap-4 px-[100px]'>
             {
               products?.map((item, index) => {
@@ -78,7 +78,7 @@ export default function Home(props) {
               })
             }
           </div>
-          <div className='w-[100%] pb-[64px] text-center'>
+          <div className='w-[100%] py-[64px] text-center'>
             <Link href="/products" className='py-[16px] px-[54px] rounded-[62px] border-2 border-[#0000001A]'>View All</Link>
           </div>
         </div>

@@ -121,9 +121,9 @@ const Cart = () => {
                         </div>
                     </div>
                 </div> : <div className='flex flex-col items-center justify-center'>
-                    <Heading type="primary" className="text-center">Your cart is empty</Heading>
+                    <div className="text-center font-integral text-[15px] mt-[30px]" >Cart is empty</div>
                     <Link href="/products">
-                        <AppButton variant='filled' className='z-10 m-auto  mt-[20px] rounded-full px-16 py-4 '>
+                        <AppButton variant='filled' className='z-10 m-auto mt-[20px] rounded-full px-16 py-4 '>
                             Shop Now
                         </AppButton>
                     </Link>

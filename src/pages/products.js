@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import { ImEqualizer2 } from "react-icons/im";
 import { api_url } from '@/redux/apis/fetchHomePage';
 import AuthLayout from '@/Components/Layouts/AuthLayout';
+import Meta from '@/Components/Meta'
 import { GoBackBtn, LoadingSpinner, ProductCard } from '@/Components/ui-elements';
 
 
@@ -62,6 +63,11 @@ const Products = () => {
 
     return (
         <AuthLayout>
+            <Meta
+                image={"/home-banner.png"}
+                title={"Products-Shop.co"}
+                description={"E-commerce app in Next.js"}
+            />
             <div className='px-[16px] w-full lg:px-[125px]'>
                 <GoBackBtn />
                 <div className='flex w-full gap-[20px]'>
