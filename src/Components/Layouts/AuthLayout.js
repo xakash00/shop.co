@@ -98,7 +98,7 @@ const AuthLayout = ({ children }) => {
                 </header>
             }
 
-            <>{children}</>
+            <Layout>{children}</Layout>
             <Footer />
         </>
     )

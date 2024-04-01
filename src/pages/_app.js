@@ -7,7 +7,9 @@ function App({ Component, ...rest }) {
   const { pageProps } = props;
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <AnimatePresence mode="wait" initial={false}>
+        <Component {...pageProps} />
+      </AnimatePresence>
     </Provider>
   );
 }
