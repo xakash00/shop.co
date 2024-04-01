@@ -1,118 +1,128 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-
+import { api_url } from '@/redux/apis/fetchHomePage'
+import AuthLayout from '@/Components/Layouts/AuthLayout'
+import Banner from "../../src/assets/banner.png"
+import Brand1 from "../../src/assets/brand1.png"
+import Brand2 from "../../src/assets/brand2.png"
+import Brand3 from "../../src/assets/brand3.png"
+import Brand4 from "../../src/assets/brand4.png"
+import Brand5 from "../../src/assets/brand5.png"
+import { AppButton, AppText, Heading, ProductCard } from '@/Components/ui-elements'
+import Link from 'next/link'
+import Meta from '@/Components/Meta'
+import { useMediaQuery } from 'react-responsive'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home(props) {
+  const { products } = props.data
+  // console.log(products)
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <Meta
+        image={"/home-banner.png"}
+        title={"Shop.co"}
+        description={"E-commerce app in Next.js"}
+      />
+      <AuthLayout>
+        <section className="'w-full h-[660px]  bg-[#F2F0F1] relative bg-primary-light'">
+          <div className='container'>
+            <Image layout='fill' className={`absolute ${isTabletOrMobile && "hidden"}`} src={"/home-banner.png"} />
+            <div className='flex flex-col gap-8 w-full lg:w-1/2 bg-transparent p-4 py-24 lg:p-24'>
+              <Heading type='banner' className='font-bold z-10 font-integral'>
+                FIND CLOTHES THAT MATCHES YOUR STYLE
+              </Heading>
+              <AppText className='z-10 text-[#00000099]'>
+                Browse through our diverse range of meticulously crafted garments, designed to bring out your
+                individuality and cater to your sense of style.
+              </AppText>
+              <Link href="/products">
+                <AppButton variant='filled' className='z-10 rounded-full px-16 py-4 lg:max-w-60'>
+                  Shop Now
+                </AppButton>
+              </Link>
+              <div className='grid z-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                <div className='border-r-2 px-[32px] m-auto'>
+                  <div className='text-[40px] font-bold'>200+</div>
+                  <div className='text-[16px] text-[#00000099] whitespace-nowrap'>International Brands</div>
+                </div>
+                <div className='border-r-2 px-[32px] m-auto'>
+                  <div className='text-[40px] font-bold'>2,000+</div>
+                  <div className='text-[16px] text-[#00000099] whitespace-nowrap'>High-Quality Products</div>
+                </div>
+                <div className='border-r-2 px-[32px] m-auto'>
+                  <div className='text-[40px] font-bold'>30,000+</div>
+                  <div className='text-[16px] text-[#00000099] whitespace-nowrap'>Happy Customers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className='grid grid-cols-3 items-center justify-center m-auto md:grid-cols-3 lg:grid-cols-5 gap-4 px-[16px]  lg:px-[100px] py-[44px] bg-[black]'>
+          <Image className='m-auto w-[133px] h-[33px]' src={Brand1} />
+          <Image className='m-auto w-[133px] h-[33px]' src={Brand2} />
+          <Image className='m-auto w-[133px] h-[33px]' src={Brand3} />
+          <Image className='m-auto w-[133px] h-[33px]' src={Brand4} />
+          <Image className='m-auto w-[133px] h-[33px]' src={Brand5} />
         </div>
-      </div>
+        <div className='pt-[72px] w-[100%] '>
+          <div className='px-[100px] font-bold pb-[55px] text-[48px] w-[100%] text-center align-center font-integral'>New Arrivals</div>
+          <div className='grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-4 gap-4 px-[100px]'>
+            {
+              products?.map((item, index) => {
+                return (
+                  <ProductCard key={index} data={item} />
+                )
+              })
+            }
+          </div>
+          <div className='w-[100%] pb-[64px] text-center'>
+            <Link href="/products" className='py-[16px] px-[54px] rounded-[62px] border-2 border-[#0000001A]'>View All</Link>
+          </div>
+        </div>
+        {/* <div className=' border-t-2 w-[100%] '>
+          <div className='px-[100px] font-bold pt-[64px] pb-[55px] text-[48px] w-[100%] text-center align-center font-integral'>Top selling</div>
+          <div className='grid grid-cols-1 m-auto md:grid-cols-1 lg:grid-cols-4 gap-4 px-[100px]'>
+            {
+              products?.map((item, index) => {
+                return (
+                  <ProductCard key={index} data={item} />
+                )
+              })
+            }
+          </div>
+          <div className='w-[100%] pb-[64px] text-center'>
+            <a href="/products" className='py-[16px] px-[54px] rounded-[62px] border-2 border-[#0000001A]'>View All</a>
+          </div>
+        </div> */}
+        {/* <div className='px-[100px] '>
+          <div className='py-[80px] mb-[80px] rounded-[40px] bg-[#F0F0F0] px-[64px]'>
+            <div className='px-[100px] font-bold  pb-[64px] text-[48px] leading-[57px] w-[100%] text-center align-center font-integral'>BROWSE BY dress STYLE</div>
+            <div className='flex lg:flex-nowrap md:flex-wrap sm:flex-wrap gap-[16px]'>
+              <Image className='w-[407px] h-[289px]' src={Ds2} />
+              <Image className='w-[684px] h-[289px]' src={Ds1} />
+            </div>
+          </div>
+        </div> */}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </AuthLayout>
+      {/* {JSON.stringify(props, null, 1)} */}
     </main>
   )
+}
+
+
+
+
+export async function getServerSideProps(context) {
+  const resp = await fetch(`${api_url}/products?limit=4&skip=0`);
+  const data = await resp.json()
+  return {
+    props: {
+      data
+    }
+  }
+  // Rest of `getServerSideProps` code
 }

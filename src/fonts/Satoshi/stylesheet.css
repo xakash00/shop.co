@@ -1,0 +1,35 @@
+@font-face {
+   font-family: 'Satoshi';
+   src: url('false.eot');
+   src:
+      url('false.eot?#iefix') format('embedded-opentype'),
+      url('false.woff') format('woff'),
+      url('false.ttf') format('truetype');
+   font-weight: 500;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Satoshi';
+   src: url('false_1.eot');
+   src:
+      url('false_1.eot?#iefix') format('embedded-opentype'),
+      url('false_1.woff') format('woff'),
+      url('false_1.ttf') format('truetype');
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Satoshi';
+   src: url('false_2.eot');
+   src:
+      url('false_2.eot?#iefix') format('embedded-opentype'),
+      url('false_2.woff') format('woff'),
+      url('false_2.ttf') format('truetype');
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}

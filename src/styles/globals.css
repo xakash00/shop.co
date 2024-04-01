@@ -1,27 +1,138 @@
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../fonts/Satoshi/false.eot');
+    src:
+        url('../fonts/Satoshi/false.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Satoshi/false.woff') format('woff'),
+        url('../fonts/Satoshi/false.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../fonts/Satoshi/false_1.eot');
+    src:
+        url('../fonts/Satoshi/false_1.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Satoshi/false_1.woff') format('woff'),
+        url('../fonts/Satoshi/false_1.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../fonts/Satoshi/false_2.eot');
+    src:
+        url('../fonts/Satoshi/false_2.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Satoshi/false_2.woff') format('woff'),
+        url('../fonts/Satoshi/false_2.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Integral CF';
+    src: url('../fonts/integral-cf/IntegralCFMediumRegular.eot');
+    src:
+        url('../fonts/integral-cf/IntegralCFMediumRegular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/integral-cf/IntegralCFMediumRegular.woff') format('woff'),
+        url('../fonts/integral-cf/IntegralCFMediumRegular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Integral CF';
+    src: url('../fonts/integral-cf/IntegralCFRegular.eot');
+    src:
+        url('../fonts/integral-cf/IntegralCFRegular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/integral-cf/IntegralCFRegular.woff') format('woff'),
+        url('../fonts/integral-cf/IntegralCFRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Integral CF';
+    src: url('../fonts/integral-cf/IntegralCFBoldRegular.eot');
+    src:
+        url('../fonts/integral-cf/IntegralCFBoldRegular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/integral-cf/IntegralCFBoldRegular.woff') format('woff'),
+        url('../fonts/integral-cf/IntegralCFBoldRegular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
+}
+
+* {
+    font-family:
+        'Satoshi',
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Open Sans',
+        'Helvetica Neue',
+        sans-serif;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    font-family: 'Satoshi';
+    overflow-x: hidden;
+    /* color: rgb(var(--foreground-rgb)); */
+    /* background: linear-gradient(
+       to bottom,
+       transparent,
+       rgb(var(--background-end-rgb))
+     )
+     rgb(var(--background-start-rgb)); */
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-bottom-color: #ff3d00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
