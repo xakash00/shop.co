@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
+    "cssnano": "^6.1.2",
     "framer-motion": "^11.0.24",
     "next": "14.0.4",
     "next-redux-wrapper": "^8.1.0",
