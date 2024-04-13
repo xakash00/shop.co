@@ -9,7 +9,6 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import Footer from '../Footer'
 import { CartIcon, SearchIcon } from '@/svgs'
 import useDeboucedFn from '@/hooks/useDeboucedFn'
-import Layout from './animateLayout'
 import { searchProducts } from '@/redux/reducers/cartSlice'
 
 const AuthLayout = ({ children }) => {
@@ -31,7 +30,7 @@ const AuthLayout = ({ children }) => {
                     <div> Sign up and get 20% off to your first order. Sign Up Now</div>
                 </div>
                 <nav className="bg-white border-gray-200 py-[24px] px-[100px] ">
-                    <div className="flex flex-wrap gap-[40px]  items-center mx-auto max-w-screen-xl">
+                    <div className="flex flex-wrap gap-[40px] items-center mx-auto max-w-screen-xl">
                         <Link href="/" className="flex items-center">
                             <span className="self-center text-xl whitespace-nowrap text-[#00000] text-[32px] font-integral font-bold">SHOP.CO</span>
                         </Link>
@@ -99,7 +98,7 @@ const AuthLayout = ({ children }) => {
                 </header>
             }
 
-            <Layout>{children}</Layout>
+            <>{children}</>
             <Footer />
         </>
     )
