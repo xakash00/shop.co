@@ -2,12 +2,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GrPowerReset } from "react-icons/gr";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { ImEqualizer2 } from "react-icons/im";
 import { api_url } from '@/redux/apis/fetchHomePage';
 import AuthLayout from '@/Components/Layouts/AuthLayout';
-import Meta from '@/Components/Meta'
+import { searchProducts } from '@/redux/reducers/cartSlice'
+import Meta from '@/Components/Meta';
 import { GoBackBtn, LoadingSpinner, ProductCard } from '@/Components/ui-elements';
 
 
@@ -19,7 +20,7 @@ const Products = () => {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
     const [bottomBar, setBottomBar] = useState(false)
-
+    console.log(searchTerm)
     const handleOpen = () => { setBottomBar(true) }
     const handleClose = () => { setBottomBar(false) }
 
@@ -79,6 +80,7 @@ const Products = () => {
                                 data?.map((item, index) => {
                                     return (
                                         <ProductCard key={index} data={item} />
+                                        // <div key={index}>hello</div>
 
                                     )
                                 })
@@ -97,17 +99,22 @@ export default Products
 
 const FilterBar = ({ setActiveIndex, categories, activeIndex, bottomBar, handleClose }) => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
+    const dispatch = useDispatch()
+
     return isTabletOrMobile ?
         <div className='py-[24px]'>
             <div className={`fixed w-[95%] h-[100rem] z-20 bg-[white] transition-all  ${bottomBar === true ? "top-[10%]" : "top-[100%]"}`}>
                 <div className='font-bold w-[95%] text-[20px] mt-[24px] leading-[27px] border-b-2 pb-[20px] flex items-center justify-between'>Filters
-                    <button onClick={() => { setActiveIndex(""); handleClose() }} className='flex items-center text-[14px] gap-[8px] text-[#063AF5]'><GrPowerReset size={"18px"} color='#063AF5' />Reset</button>
+                    <button onClick={() => {
+                        setActiveIndex(""); handleClose();
+                        dispatch(searchProducts(""))
+                    }} className='flex items-center text-[14px] gap-[8px] text-[#063AF5]'><GrPowerReset size={"18px"} color='#063AF5' />Reset</button>
                 </div>
                 <div className='flex items-center flex-wrap gap-[8px] pt-[20px]'>
                     {categories?.map((item, index) => {
                         return (
-                            <button onClick={() => { setActiveIndex(item); handleClose() }} key={index} className={`${activeIndex === item ? "bg-[#000000] text-[#FFFFFF]" : "bg-[#F0F0F0] text-[#00000099]"} capitalize text-[14px]  rounded-[62px] py-[10px] flex justify-center px-[20px]`}>
-                                {item}
+                            <button onClick={() => { setActiveIndex(item.slug); handleClose() }} key={index} className={`${activeIndex === item.slug ? "bg-[#000000] text-[#FFFFFF]" : "bg-[#F0F0F0] text-[#00000099]"} capitalize text-[14px]  rounded-[62px] py-[10px] flex justify-center px-[20px]`}>
+                                {item.name}
                             </button>
                         )
                     })}
@@ -117,13 +124,16 @@ const FilterBar = ({ setActiveIndex, categories, activeIndex, bottomBar, handleC
         : (
             <div className='border-2 border-[#0000001A] p-[24px]  lg:w-[20%] h-[100%] rounded-[20px]'>
                 <div className='font-bold text-[20px] leading-[27px] border-b-2 pb-[20px] flex items-center justify-between'>Filters
-                    <button onClick={() => { setActiveIndex(""); handleClose() }} className='flex items-center text-[14px] gap-[8px] text-[#063AF5]'><GrPowerReset size={"18px"} color='#063AF5' />Reset</button>
+                    <button onClick={() => {
+                        setActiveIndex(""); handleClose();
+                        dispatch(searchProducts(""))
+                    }} className='flex items-center text-[14px] gap-[8px] text-[#063AF5]'><GrPowerReset size={"18px"} color='#063AF5' />Reset</button>
                 </div>
                 <div className='flex items-center flex-wrap gap-[8px] pt-[20px]'>
                     {categories?.map((item, index) => {
                         return (
-                            <button onClick={() => { setActiveIndex(item); handleClose() }} key={index} className={`${activeIndex === item ? "bg-[#000000] text-[#FFFFFF]" : "bg-[#F0F0F0] text-[#00000099]"} capitalize text-[14px]  rounded-[62px] py-[10px] flex justify-center px-[20px]`}>
-                                {item}
+                            <button onClick={() => { setActiveIndex(item.slug); handleClose() }} key={index} className={`${activeIndex === item.slug ? "bg-[#000000] text-[#FFFFFF]" : "bg-[#F0F0F0] text-[#00000099]"} capitalize text-[14px]  rounded-[62px] py-[10px] flex justify-center px-[20px]`}>
+                                {item.name}
                             </button>
                         )
                     })}
