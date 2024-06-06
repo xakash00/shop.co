@@ -69,12 +69,12 @@ const Cart = () => {
                             <div className='flex flex-col gap-4'>
                                 <div className='flex justify-between'>
                                     <span className='text-[#00000099]'>Subtotal</span>
-                                    <span className='font-bold text-[20px] leading-[27px]'>${totalAmount}</span>
+                                    <span className='font-bold text-[20px] leading-[27px]'>${(totalAmount).toFixed(2)}</span>
                                 </div>
                                 <div className='flex justify-between'>
                                     <span className='text-[#00000099]'>Discount (-20%)</span>
                                     <span className='font-bold text-[20px] leading-[27px] text-[#FF3333]'>
-                                        {totalAmount * 20 / 100}
+                                        {(totalAmount * 20 / 100).toFixed(2)}
                                     </span>
                                 </div>
                                 <div className='flex justify-between'>
@@ -89,7 +89,7 @@ const Cart = () => {
                                 <div className='flex justify-between'>
                                     <span className='text-[#00000099]'>Total</span>
                                     <span className='font-bold text-[24px] leading-[32px]'>
-                                        ${totalAmount - totalAmount * 20 / 100}
+                                        ${(totalAmount - totalAmount * 20 / 100).toFixed(2)}
                                     </span>
                                 </div>
                                 <div className='flex justify-between gap-4 max-md:flex-wrap'>

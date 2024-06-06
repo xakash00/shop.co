@@ -20,7 +20,7 @@ const Products = () => {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
     const [bottomBar, setBottomBar] = useState(false)
-    console.log(searchTerm)
+
     const handleOpen = () => { setBottomBar(true) }
     const handleClose = () => { setBottomBar(false) }
 
@@ -40,7 +40,7 @@ const Products = () => {
         axios.get('https://dummyjson.com/products/categories')
             .then(response => {
                 setLoading(false)
-                setCategories(response.data)
+                setCategories(response.data);
             }, error => {
                 setLoading(false)
                 console.log(error);
