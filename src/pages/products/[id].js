@@ -49,8 +49,8 @@ const ProductDetails = (props) => {
                             }
                         </div>
                         <div className={`${isTabletOrMobile ? "order-2  mb-[16px]" : "order-2"}`}>
-                            <div className={`m-auto h-[500px] flex overflow-hidden rounded-[20px] border-2`}>
-                                <img alt="product" className='w-[100%] object-contain  m-auto' src={images[currIndex]} />
+                            <div className={`m-auto h-[500px] w-[500px] flex overflow-hidden rounded-[20px] border-2`}>
+                                <img alt="product" className='w-[100%] h-[100%] object-contain  m-auto' src={images[currIndex]} />
                             </div>
                         </div>
                     </div>
