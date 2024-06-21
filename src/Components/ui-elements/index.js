@@ -103,6 +103,7 @@ export const ProductCard = (props) => {
                     count={5}
                     onChange={(e) => console.log(e)}
                     size={"18px"}
+                    edit={false}
                     isHalf={true}
                     activeColor="#ffd700"
                     value={rating}
