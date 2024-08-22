@@ -52,7 +52,7 @@ const ProductDetails = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className='order-3'>
+                    <div className='order-3 w-[100%]'>
                         <div className='font-bold text-[40px] z-10 font-integral'>{title}</div>
                         <div className='flex items-center gap-[13px]'>
                             <ReactStars
