@@ -116,13 +116,14 @@ export default function Home(props) {
 
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const resp = await fetch(`${api_url}/products?limit=4&skip=0`);
   const data = await resp.json()
   return {
     props: {
       data
-    }
+    },
+    revalidate: 259200
   }
   // Rest of `getServerSideProps` code
 }
