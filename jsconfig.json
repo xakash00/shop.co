@@ -22,6 +22,6 @@
 
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Components/Footer/index.js"],
   "exclude": ["node_modules"]
 }

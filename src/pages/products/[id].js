@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import AuthLayout from '@/Components/Layouts/AuthLayout';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import ReactStars from "react-rating-stars-component";
 import { api_url } from '@/redux/apis/fetchHomePage';
@@ -9,7 +8,6 @@ import { FaMinus } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemQuantity, subtractItemQuantity, addToCart } from '@/redux/reducers/cartSlice';
 import { GoBackBtn } from '@/Components/ui-elements';
-import Head from 'next/head';
 import Meta from '@/Components/Meta';
 import { toTitleCase } from '@/helpers';
 import { useMediaQuery } from 'react-responsive';
@@ -18,7 +16,7 @@ const ProductDetails = (props) => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
     const [currIndex, setCurrIndex] = useState(0)
     const dispatch = useDispatch();
-    const { brand, category, description, discountPercentage, id, images, price, rating, stock, thumbnail, title } = props.data
+    const { description, id, images, price, rating, thumbnail, title } = props.data
     const { cartItems } = useSelector(store => store.cart);
     const ItemQuantity = cartItems.filter((item) => {
         if (item.id === id) {
@@ -93,15 +91,32 @@ const ProductDetails = (props) => {
 
 export default ProductDetails;
 
+export async function getStaticPaths() {
+    const res = await fetch(`${api_url}/products?limit=100&skip=0`)
+    const data = await res.json()
 
-export async function getServerSideProps(context) {
+    // Get the paths we want to pre-render based on posts
+    const paths = data.products.map((product) => ({
+        params: { id: String(product.id) },
+    }))
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+
+export async function getStaticProps(context) {
     const id = context.params.id // Get ID from slug `/book/1`
     const resp = await fetch(`${api_url}/products/${id}`);
     const data = await resp.json()
     return {
         props: {
             data
-        }
+        },
+        revalidate: 259200
     }
     // Rest of `getServerSideProps` code
 }

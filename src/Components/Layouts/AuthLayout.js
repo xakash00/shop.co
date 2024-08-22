@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import { GiHamburgerMenu } from "react-icons/gi"
-import Footer from '../Footer'
 import { CartIcon, SearchIcon } from '@/svgs'
 import useDeboucedFn from '@/hooks/useDeboucedFn'
 import { searchProducts } from '@/redux/reducers/cartSlice'
@@ -38,7 +37,7 @@ const AuthLayout = ({ children }) => {
                             <Link href="/products" className='text-[#000] text-[16px] font-[400]'>Shop</Link>
                             <div className='text-[#000] text-[16px] font-[400]'>On Sale</div>
                             <div className='text-[#000] text-[16px] font-[400]'>New Arrivals</div>
-                            <div className='text-[#000] text-[16px] font-[400]'>Brands</div>
+                            <Link href="/about-us" className='text-[#000] text-[16px] font-[400]'>About Us</Link>
                         </div>
                         <div className='w-[577px] gap-[12px] px-[16px] py-[12px] rounded-[62px] flex items-center bg-[#F0F0F0]'>
                             <SearchIcon />
@@ -73,7 +72,7 @@ const AuthLayout = ({ children }) => {
                             <div className='text-[#000] text-[16px] font-[400]'>Shop</div>
                             <div className='text-[#000] text-[16px] font-[400]'>On Sale</div>
                             <div className='text-[#000] text-[16px] font-[400]'>New Arrivals</div>
-                            <div className='text-[#000] text-[16px] font-[400]'>Brands</div>
+                            <Link href="/about-us" className='text-[#000] text-[16px] font-[400]'>About Us</Link>
                         </div>
                     </div>
                     <div className='bg-black h-38 p-2 text-[12px]  text-white text-center w-auto'>
@@ -99,7 +98,7 @@ const AuthLayout = ({ children }) => {
             }
 
             <>{children}</>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
