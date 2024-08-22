@@ -8,10 +8,14 @@ export const cartSlice = createSlice({
         quantity: 0,
         cartItems: [],
         totalAmount: 0,
+        scroll_position: null
     },
     reducers: {
         searchProducts: (state, { payload }) => {
             state.searchTerm = payload
+        },
+        setScrollPosition: (state, action) => {
+            state.scroll_position = action.payload
         },
         addToCart: (state, { payload }) => {
             const isItemExist = state.cartItems.find(
@@ -81,6 +85,7 @@ export const {
     searchProducts,
     addItemQuantity,
     subtractItemQuantity,
+    setScrollPosition
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -10,12 +10,15 @@ import AuthLayout from '@/Components/Layouts/AuthLayout';
 import { searchProducts } from '@/redux/reducers/cartSlice'
 import Meta from '@/Components/Meta';
 import { GoBackBtn, LoadingSpinner, ProductCard } from '@/Components/ui-elements';
+import { setScrollPosition } from '../redux/reducers/cartSlice';
 
 
 const Products = () => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
-    const { searchTerm } = useSelector(store => store.cart);
+    const { searchTerm, scroll_position } = useSelector(store => store.cart);
+    console.log(scroll_position)
     const [data, setData] = useState([]);
+    const dispatch = useDispatch()
     const [activeIndex, setActiveIndex] = useState("")
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
@@ -23,6 +26,11 @@ const Products = () => {
 
     const handleOpen = () => { setBottomBar(true) }
     const handleClose = () => { setBottomBar(false) }
+
+    const performScroll = (uniqueIdentifier) => {
+        const element = document.getElementById(uniqueIdentifier);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    };
 
     let url = () => {
         if (activeIndex.length > 0) {
@@ -39,6 +47,7 @@ const Products = () => {
     const getCategroies = () => {
         axios.get('https://dummyjson.com/products/categories')
             .then(response => {
+
                 setLoading(false)
                 setCategories(response.data);
             }, error => {
@@ -51,9 +60,12 @@ const Products = () => {
         setLoading(true)
         axios.get(url())
             .then(response => {
-                setLoading(false)
+                setLoading(false);
                 setData(response.data?.products);
-                getCategroies()
+                getCategroies();
+                if (scroll_position) {
+                    performScroll(scroll_position)
+                }
             }, error => {
                 setLoading(false)
                 console.log(error);
@@ -79,9 +91,9 @@ const Products = () => {
                             {
                                 data?.map((item, index) => {
                                     return (
-                                        <ProductCard key={index} data={item} />
-                                        // <div key={index}>hello</div>
-
+                                        <div id={`product-${item.id}`} key={item.id} onClick={() => dispatch(setScrollPosition(`product-${item.id}`))}>
+                                            <ProductCard key={index} data={item} setScroll={() => { dispatch(setScrollPosition(`product-${item.id}`)) }} />
+                                        </div>
                                     )
                                 })
                             }
@@ -90,7 +102,7 @@ const Products = () => {
                     </div>
                 </div>
             </div>
-        </AuthLayout>
+        </AuthLayout >
     )
 }
 

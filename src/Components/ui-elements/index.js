@@ -95,7 +95,7 @@ export const ProductCard = (props) => {
     return (
         <Link href={`/products/${id}`} className='w-[100%] md:h-200px lg:h-[444px] m-auto overflow-hidden'>
             <div className='overflow-hidden w-[100%] max-md:h-[130px] max-lg:h-[298px] relative rounded-[20px]'>
-                <img layout="fill" alt="products" className='w-[100%] transition-all max-md:h-[130px] lg:h-[298px] hover:scale-110  object-contain' src={thumbnail} />
+                <Image width={400} height={298} alt={title} className='w-[100%] transition-all max-md:h-[130px] lg:h-[298px] hover:scale-110  object-contain' src={thumbnail} />
             </div>
             <div className='font-bold md:text-[16px] truncate lg:text-[20px] leading-[27px] pt-[16px]'>{title}</div>
             <div className='flex items-center gap-[13px]'>
