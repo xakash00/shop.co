@@ -27,8 +27,8 @@ const Products = () => {
     const handleClose = () => { setBottomBar(false) }
 
     const performScroll = (uniqueIdentifier) => {
-        const element = document.getElementById(uniqueIdentifier);
-        element?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        const section = document.querySelector(`#${uniqueIdentifier}`);
+        section?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
 
     let url = () => {
@@ -62,7 +62,7 @@ const Products = () => {
                 setLoading(false);
                 setData(response.data?.products);
                 getCategroies();
-                if (scroll_position) {
+                if (globalThis && scroll_position) {
                     performScroll(scroll_position)
                 }
             }, error => {
