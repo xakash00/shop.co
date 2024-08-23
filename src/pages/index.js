@@ -30,7 +30,7 @@ export default function Home(props) {
       <AuthLayout>
         <section className="'w-full h-[663px]  bg-[#F2F0F1] relative bg-primary-light'">
           <div className='flex w-full justify-between '>
-            <div className='flex flex-col gap-8 w-full lg:w-[50%] bg-transparent p-4 py-24 lg:p-24'>
+            <div className='flex flex-col gap-8 w-full lg:w-[950px] bg-transparent p-4 py-24 lg:p-24'>
               <Heading type='banner' className='font-bold z-10 font-integral'>
                 FIND CLOTHES THAT MATCHES YOUR STYLE
               </Heading>
@@ -42,7 +42,7 @@ export default function Home(props) {
               <AppButton onClick={() => router.push("/products")} variant='filled' className='z-10 max-md:m-auto bg-black rounded-full px-16 py-4 w-60 max-lg:max-w-60'>
                 Shop Now
               </AppButton>
-              <div className='grid z-10 grid-cols-3 m-auto max-md:grid-cols-1 max-lg:grid-cols-3 gap-4'>
+              <div className='grid z-10 grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-3 gap-[64px]'>
                 <div className='px-[32px] m-auto w-[100%] text-left'>
                   <div className='max-md:text-[22px] lg:text-[40px] font-bold'>200+</div>
                   <div className='text-[16px] text-[#00000099] whitespace-nowrap'>International Brands</div>
@@ -57,7 +57,7 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
-            <Image alt="banner" width={1440} height={663} className={` w-[auto] h-[663px] ${isTabletOrMobile && "hidden"}`} src={"/home-header.png"} />
+            <Image alt="banner" width={1440} height={663} className={`w-[auto] h-[663px] ${isTabletOrMobile && "hidden"}`} src={"/home-header.png"} />
           </div>
         </section>
         <div className='grid grid-cols-3 items-center justify-center m-auto md:grid-cols-3 lg:grid-cols-5 gap-4 px-[16px]  lg:px-[100px] py-[44px] bg-[black]'>
