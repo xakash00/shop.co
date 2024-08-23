@@ -28,9 +28,8 @@ export default function Home(props) {
         description={"E-commerce app in Next.js"}
       />
       <AuthLayout>
-        <section className="'w-full h-[660px]  bg-[#F2F0F1] relative bg-primary-light'">
-          <div className='container'>
-            <Image layout='fill' className={`absolute ${isTabletOrMobile && "hidden"}`} src={"/home-banner.png"} />
+        <section className="'w-full h-[663px]  bg-[#F2F0F1] relative bg-primary-light'">
+          <div className='flex w-full justify-between '>
             <div className='flex flex-col gap-8 w-full lg:w-1/2 bg-transparent p-4 py-24 lg:p-24'>
               <Heading type='banner' className='font-bold z-10 font-integral'>
                 FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -58,14 +57,15 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
+            <Image width={1440} height={663} className={` w-[auto] h-[663px] ${isTabletOrMobile && "hidden"}`} src={"/home-header.png"} />
           </div>
         </section>
         <div className='grid grid-cols-3 items-center justify-center m-auto md:grid-cols-3 lg:grid-cols-5 gap-4 px-[16px]  lg:px-[100px] py-[44px] bg-[black]'>
-          <Image className='m-auto w-[133px] h-[33px]' src={Brand1} />
-          <Image className='m-auto w-[133px] h-[33px]' src={Brand2} />
-          <Image className='m-auto w-[133px] h-[33px]' src={Brand3} />
-          <Image className='m-auto w-[133px] h-[33px]' src={Brand4} />
-          <Image className='m-auto w-[133px] h-[33px]' src={Brand5} />
+          <Image alt="Brand1" width={133} height={33} className='m-auto w-[133px] h-[33px]' src={Brand1} />
+          <Image alt="Brand2" width={133} height={33} className='m-auto w-[133px] h-[33px]' src={Brand2} />
+          <Image alt="Brand3" width={133} height={33} className='m-auto w-[133px] h-[33px]' src={Brand3} />
+          <Image alt="Brand4" width={133} height={33} className='m-auto w-[133px] h-[33px]' src={Brand4} />
+          <Image alt="Brand5" width={133} height={33} className='m-auto w-[133px] h-[33px]' src={Brand5} />
         </div>
         <div className='pt-[72px] w-[100%] '>
           <div className='px-[100px] font-bold md:pb:[30px] lg:pb-[55px] md:text-[38px] lg:text-[48px] w-[100%] text-center align-center font-integral'>New Arrivals</div>

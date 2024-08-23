@@ -16,7 +16,6 @@ import { setScrollPosition } from '../redux/reducers/cartSlice';
 const Products = () => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
     const { searchTerm, scroll_position } = useSelector(store => store.cart);
-    console.log(scroll_position)
     const [data, setData] = useState([]);
     const dispatch = useDispatch()
     const [activeIndex, setActiveIndex] = useState("")

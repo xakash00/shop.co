@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import { CartIcon, SearchIcon } from '@/svgs'
 import useDeboucedFn from '@/hooks/useDeboucedFn'
 import { searchProducts } from '@/redux/reducers/cartSlice'
+import Footer from "../Footer"
 
 const AuthLayout = ({ children }) => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1065px)' });
@@ -98,7 +99,7 @@ const AuthLayout = ({ children }) => {
             }
 
             <>{children}</>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }
