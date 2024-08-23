@@ -57,7 +57,9 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
-            <Image alt="banner" width={1440} height={663} className={`w-[auto] h-[663px] ${isTabletOrMobile && "hidden"}`} src={"/home-header.png"} />
+            <div className='w-[800px] h-[663px]'>
+              <Image alt="banner" width={1440} height={663} className={`w-[800px] h-[663px] ${isTabletOrMobile && "hidden"}`} src={"/home-header.png"} />
+            </div>
           </div>
         </section>
         <div className='grid grid-cols-3 items-center justify-center m-auto md:grid-cols-3 lg:grid-cols-5 gap-4 px-[16px]  lg:px-[100px] py-[44px] bg-[black]'>
