@@ -41,7 +41,7 @@ const ProductDetails = (props) => {
                                 images?.slice(0, 3)?.map((item, index) => {
                                     return (
                                         <div onClick={() => setCurrIndex(index)} className={`relative  w-[111px] h-[106px] overflow-hidden rounded-[20px] border-2 ${currIndex === index && "border-[#000]"}`}>
-                                            <Image key={index} width={111} height={106} alt="product" className='w-[100%] mix-blend-multiply absolute top-0 bottom-0 m-auto object-contain' src={item} />
+                                            <Image priority={true} key={index} width={111} height={106} alt="product" className='w-[100%] mix-blend-multiply absolute top-0 bottom-0 m-auto object-contain' src={item} />
                                         </div>
                                     )
                                 })
@@ -49,7 +49,7 @@ const ProductDetails = (props) => {
                         </div>
                         <div className={`${isTabletOrMobile ? "order-2  mb-[16px]" : "order-2"}`}>
                             <div className={`m-auto sm:w-[100%] sm:h-[auto] md:w-[100%] md:h-[auto] lg:h-[700px] lg:w-[700px] p-[20px] flex overflow-hidden rounded-[20px] border-2`}>
-                                <Image width={500} height={500} alt="product" className='w-[100%] h-[100%] object-contain  m-auto' src={images[currIndex]} />
+                                <Image priority={true} width={500} height={500} alt="product" className='w-[100%] h-[100%] object-contain  m-auto' src={images[currIndex]} />
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ export default function Footer() {
                 <div></div>
 
                 <div>
-                    <Heading as='h6' className='text-base font-medium mb-7 font-body tracking-[3px]'>
+                    <Heading as='h2' className='text-base font-medium mb-7 font-body tracking-[3px]'>
                         Company
                     </Heading>
                     <div className='flex flex-col gap-4'>
@@ -67,7 +67,7 @@ export default function Footer() {
 
                 <div></div>
                 <div>
-                    <Heading as='h6' className='text-base font-medium mb-7 font-body tracking-[3px]'>
+                    <Heading as='h2' className='text-base font-medium mb-7 font-body tracking-[3px]'>
                         Help
                     </Heading>
                     <div className='flex flex-col gap-4'>
@@ -80,7 +80,7 @@ export default function Footer() {
 
                 <div></div>
                 <div>
-                    <Heading as='h6' className='text-base font-medium mb-7 font-body tracking-[3px]'>
+                    <Heading as='h2' className='text-base font-medium mb-7 font-body tracking-[3px]'>
                         FAQ
                     </Heading>
                     <div className='flex flex-col gap-4'>
@@ -93,7 +93,7 @@ export default function Footer() {
 
                 <div></div>
                 <div>
-                    <Heading as='h6' className='text-base font-medium mb-7 font-body tracking-[3px]'>
+                    <Heading as='h2' className='text-base font-medium mb-7 font-body tracking-[3px]'>
                         Resources
                     </Heading>
                     <div className='flex flex-col gap-4'>
