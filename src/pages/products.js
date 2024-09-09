@@ -22,6 +22,7 @@ const Products = () => {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
     const [bottomBar, setBottomBar] = useState(false)
+    const [offset, setOffset] = useState(0)
 
     const handleOpen = () => { setBottomBar(true) }
     const handleClose = () => { setBottomBar(false) }
@@ -39,7 +40,7 @@ const Products = () => {
             return `${api_url}/products/search?q=${searchTerm}`
         }
         else {
-            return `${api_url}/products/?limit=${100}&skip=${0}`
+            return `${api_url}/products/?limit=12&skip=${offset}`
         }
     }
 
@@ -60,7 +61,7 @@ const Products = () => {
         axios.get(url())
             .then(response => {
                 setLoading(false);
-                setData(response.data?.products);
+                setData(p => [...p, ...response.data?.products]);
                 getCategroies();
                 if (globalThis && scroll_position) {
                     performScroll(scroll_position)
@@ -69,7 +70,7 @@ const Products = () => {
                 setLoading(false)
                 console.log(error);
             });
-    }, [searchTerm, activeIndex]);
+    }, [searchTerm, activeIndex, offset]);
 
 
 
@@ -86,7 +87,7 @@ const Products = () => {
                     <FilterBar {...{ setActiveIndex, categories, bottomBar, activeIndex, handleClose }} />
                     <div className='lg:w-[80%] md:w-[100%]'>
                         <div className="font-bold z-10 flex items-center justify-between text-[24px] lg:text-[32px]">Products{isTabletOrMobile && <button onClick={handleOpen} className='bg-[#F0F0F0] p-[8px] rounded-[100px]'><ImEqualizer2 size={"13px"} color="#000000" /></button>}</div>
-                        {loading === true ? <LoadingSpinner /> : <div className='pt-[16px] grid grid-cols-2 m-auto md:grid-cols-2 lg:grid-cols-3 gap-[20px] '>
+                        <div className='pt-[16px] grid grid-cols-2 m-auto md:grid-cols-2 lg:grid-cols-3 gap-[20px] '>
                             {
                                 data?.map((item, index) => {
                                     return (
@@ -97,7 +98,17 @@ const Products = () => {
                                 })
                             }
                         </div>
-                        }
+                        <div className='w-full text-center p-[80px]'>
+                            <button disabled={loading} onClick={() => {
+                                setOffset(p => p + 12)
+                            }} className='bg-primary w-[120px] h-[48px] text-white p-2 rounded-[8px] font-medium font-sans'>
+                                {loading ? <div className='flex items-center gap-[8px]'>
+                                    <LoadingSpinner />
+                                    <div>Loading</div>
+                                </div> :
+                                    <div>Load more...</div>}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,7 +151,7 @@ const FilterBar = ({ setActiveIndex, categories, activeIndex, bottomBar, handleC
                         dispatch(searchProducts(""))
                     }} className='flex items-center text-[14px] gap-[8px] text-[#063AF5]'><GrPowerReset size={"18px"} color='#063AF5' />Reset</button>
                 </div>
-                <div className='flex items-center flex-wrap gap-[8px] pt-[20px]'>
+                <div className='max-h-[100vh] h-full flex items-center flex-wrap gap-[8px] pt-[20px]'>
                     {categories?.map((item, index) => {
                         return (
                             <button onClick={() => { setActiveIndex(item.slug); handleClose() }} key={index} className={`${activeIndex === item.slug ? "bg-[#000000] text-[#FFFFFF]" : "bg-[#F0F0F0] text-[#00000099]"} capitalize text-[14px]  rounded-[62px] py-[10px] flex justify-center px-[20px]`}>
